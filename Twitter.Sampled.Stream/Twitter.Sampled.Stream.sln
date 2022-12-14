@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Token", "Tw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Models", "Twitter.Sampled.Models\Twitter.Sampled.Models.csproj", "{F89D22B3-3F6B-4D77-A96D-A8122C067666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Consumer", "Twitter.Sampled.Consumer\Twitter.Sampled.Consumer.csproj", "{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F89D22B3-3F6B-4D77-A96D-A8122C067666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F89D22B3-3F6B-4D77-A96D-A8122C067666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F89D22B3-3F6B-4D77-A96D-A8122C067666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

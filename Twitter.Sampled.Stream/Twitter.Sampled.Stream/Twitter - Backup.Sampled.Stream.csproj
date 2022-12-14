@@ -11,15 +11,4 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Twitter.Sampled.Models\Twitter.Sampled.Models.csproj" />
-    <ProjectReference Include="..\Twitter.Sampled.Token\Twitter.Sampled.Token.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

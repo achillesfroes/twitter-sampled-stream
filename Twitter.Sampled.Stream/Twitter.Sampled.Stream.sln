@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Stream", "Twitter.Sampled.Stream\Twitter.Sampled.Stream.csproj", "{3D3CE647-0F3D-4722-B767-DCF1246FCAEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Stream", "Twitter.Sampled.Stream\Twitter.Sampled.Stream.csproj", "{3D3CE647-0F3D-4722-B767-DCF1246FCAEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionApp.TwitterStreamReader", "FunctionApp.TwitterStreamReader\FunctionApp.TwitterStreamReader.csproj", "{5AC76015-504D-4BBB-82FE-6257ED6A254E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Token", "Twitter.Sampled.Token\Twitter.Sampled.Token.csproj", "{87C79554-0604-461D-AEF1-D29E54194D00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Models", "Twitter.Sampled.Models\Twitter.Sampled.Models.csproj", "{F89D22B3-3F6B-4D77-A96D-A8122C067666}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{3D3CE647-0F3D-4722-B767-DCF1246FCAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3CE647-0F3D-4722-B767-DCF1246FCAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3CE647-0F3D-4722-B767-DCF1246FCAEC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AC76015-504D-4BBB-82FE-6257ED6A254E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AC76015-504D-4BBB-82FE-6257ED6A254E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AC76015-504D-4BBB-82FE-6257ED6A254E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AC76015-504D-4BBB-82FE-6257ED6A254E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87C79554-0604-461D-AEF1-D29E54194D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87C79554-0604-461D-AEF1-D29E54194D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87C79554-0604-461D-AEF1-D29E54194D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87C79554-0604-461D-AEF1-D29E54194D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F89D22B3-3F6B-4D77-A96D-A8122C067666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F89D22B3-3F6B-4D77-A96D-A8122C067666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F89D22B3-3F6B-4D77-A96D-A8122C067666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F89D22B3-3F6B-4D77-A96D-A8122C067666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

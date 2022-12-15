@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Token", "Tw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Models", "Twitter.Sampled.Models\Twitter.Sampled.Models.csproj", "{F89D22B3-3F6B-4D77-A96D-A8122C067666}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Consumer", "Twitter.Sampled.Consumer\Twitter.Sampled.Consumer.csproj", "{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Consumer", "Twitter.Sampled.Consumer\Twitter.Sampled.Consumer.csproj", "{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Application", "Twitter.Sampled.Application\Twitter.Sampled.Application.csproj", "{6CCB5E93-446E-47E2-8232-2A32C2880777}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Application", "Twitter.Sampled.Application\Twitter.Sampled.Application.csproj", "{6CCB5E93-446E-47E2-8232-2A32C2880777}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Infrastructure.Data", "Twitter.Sampled.Infrastructure.Data\Twitter.Sampled.Infrastructure.Data.csproj", "{1B4DF8C1-174C-40B3-A8C3-66E9C75F44F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Infrastructure.Data", "Twitter.Sampled.Infrastructure.Data\Twitter.Sampled.Infrastructure.Data.csproj", "{1B4DF8C1-174C-40B3-A8C3-66E9C75F44F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

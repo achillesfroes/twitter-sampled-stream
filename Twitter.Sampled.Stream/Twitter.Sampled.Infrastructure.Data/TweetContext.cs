@@ -14,7 +14,6 @@ namespace Twitter.Sampled.Infrastructure.Data
         public DbSet<HashTag> HashTags { get; set; }
 
         public DbSet<HashTagReport> HashTagsReport { get; set; }
-        public DbSet<TweetReport> TweetsReport { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

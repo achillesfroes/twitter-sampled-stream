@@ -4,7 +4,6 @@ namespace Twitter.Sampled.Infrastructure.Data
 {
     public interface ITweetReportRepository
     {
-        Task UpdateTagCount();
-        Task<IEnumerable<HashTagReport>> TopHashTags(int number);
+        Task<int> GetTweetCount();
     }
 }

@@ -1,18 +1,42 @@
 ﻿using Twitter.Sampled.Infrastructure.Data;
+using Twitter.Sampled.Models;
 
 namespace Twitter.Sampled.Application
 {
     public class TweetReportService : ITweetReportService
     {
+        private readonly IHashTagReportRepository hashTagReportRepository;
         private readonly ITweetReportRepository tweetReportRepository;
 
-        public TweetReportService(ITweetReportRepository tweetReportRepository) => this.tweetReportRepository = tweetReportRepository;
+        public TweetReportService(
+            IHashTagReportRepository hashTagReportRepository,
+            ITweetReportRepository tweetReportRepository)
+        {
+            this.hashTagReportRepository = hashTagReportRepository;
+            this.tweetReportRepository = tweetReportRepository;
+        }
 
         public async Task TweetSaved(object sender, EventArgs e)
         {
-            await tweetReportRepository.UpdateTagCount();
+            await hashTagReportRepository.UpdateTagCount();
+        }
 
-            var topHashTags = await tweetReportRepository.TopHashTags(10);
+        public async Task<IEnumerable<HashTagReport>> GetHashTagReport(int? number)
+        {
+            var topHashTags = await hashTagReportRepository.TopHashTags(number);
+
+            var hashTagReport = topHashTags.Select(tht => new HashTagReport
+            {
+                Tag = tht.Tag,
+                TagCount = tht.TagCount,
+            }).ToList();
+
+            return hashTagReport;
+        }
+
+        public async Task<int> GetTweetCount()
+        {
+            return await tweetReportRepository.GetTweetCount();
         }
     }
 }

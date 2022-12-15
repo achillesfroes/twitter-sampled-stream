@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Twitter.Sampled.Application;
 
-namespace Twitter.Sampled.Consumer
+namespace Twitter.Sampled.Functions
 {
     public class TweetConsumer
     {

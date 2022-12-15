@@ -9,11 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Token", "Tw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Models", "Twitter.Sampled.Models\Twitter.Sampled.Models.csproj", "{F89D22B3-3F6B-4D77-A96D-A8122C067666}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Consumer", "Twitter.Sampled.Consumer\Twitter.Sampled.Consumer.csproj", "{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Functions", "Twitter.Sampled.Consumer\Twitter.Sampled.Functions.csproj", "{FC6302BC-5C6C-480E-B1B7-7D865BBE06B4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Application", "Twitter.Sampled.Application\Twitter.Sampled.Application.csproj", "{6CCB5E93-446E-47E2-8232-2A32C2880777}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Infrastructure.Data", "Twitter.Sampled.Infrastructure.Data\Twitter.Sampled.Infrastructure.Data.csproj", "{1B4DF8C1-174C-40B3-A8C3-66E9C75F44F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{D7C0EBE7-12FB-4083-87F6-994999FD9F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Client.WebApp", "Twitter.Sampled.Client.WebApp\Twitter.Sampled.Client.WebApp.csproj", "{0A276CAA-336E-4494-8449-1318F0403719}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Client.ConsoleApp", "Twitter.Sampled.Client.ConsoleApp\Twitter.Sampled.Client.ConsoleApp.csproj", "{E626BA63-D462-4647-9913-9FA6C691B0F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +51,21 @@ Global
 		{1B4DF8C1-174C-40B3-A8C3-66E9C75F44F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B4DF8C1-174C-40B3-A8C3-66E9C75F44F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B4DF8C1-174C-40B3-A8C3-66E9C75F44F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A276CAA-336E-4494-8449-1318F0403719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A276CAA-336E-4494-8449-1318F0403719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A276CAA-336E-4494-8449-1318F0403719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A276CAA-336E-4494-8449-1318F0403719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E626BA63-D462-4647-9913-9FA6C691B0F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E626BA63-D462-4647-9913-9FA6C691B0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E626BA63-D462-4647-9913-9FA6C691B0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E626BA63-D462-4647-9913-9FA6C691B0F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A276CAA-336E-4494-8449-1318F0403719} = {D7C0EBE7-12FB-4083-87F6-994999FD9F76}
+		{E626BA63-D462-4647-9913-9FA6C691B0F5} = {D7C0EBE7-12FB-4083-87F6-994999FD9F76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49044F3E-1AE5-48EE-898E-CF87215EB8EA}

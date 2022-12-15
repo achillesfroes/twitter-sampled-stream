@@ -2,7 +2,7 @@
 {
     public interface ITweetService
     {
-        event TweetService.TweetSavedEventHandler TweetSaved;
+        event TweetService.TweetSavedEventHandler? TweetSaved;
 
         Task KeepTweet(string tweetString);
     }

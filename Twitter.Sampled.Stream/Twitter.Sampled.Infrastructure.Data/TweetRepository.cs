@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Xml;
 using Twitter.Sampled.Infrastructure.Data.DataModels;
+using System.Linq;
 
 namespace Twitter.Sampled.Infrastructure.Data
 {
@@ -10,21 +10,19 @@ namespace Twitter.Sampled.Infrastructure.Data
 
         public TweetRepository(TweetContext tweetContext) => this.tweetContext = tweetContext;
 
-        public async Task AddTweet(Tweet tweet) {
-
-            
-            tweetContext.HashTags.AddRangeIfNotExists(tweet.Tags, t => t.Tag);
-
-            if (tweetContext.Tweets.Any(e => e.Id == tweet.Id))
+        public async Task AddTweet(Tweet tweet)
+        {
+            try
             {
-                tweetContext.Tweets.Attach(tweet).State = EntityState.Modified;
-            }
-            else
-            {
+
                 await tweetContext.Tweets.AddAsync(tweet);
-            }
 
-            await tweetContext.SaveChangesAsync();
+                await tweetContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

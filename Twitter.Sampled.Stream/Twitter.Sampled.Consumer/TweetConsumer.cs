@@ -11,17 +11,14 @@ namespace Twitter.Sampled.Consumer
     {
         private readonly ITweetService tweetService;
         private readonly ITweetReportService tweetReportService;
-        //private readonly ILogger log;
 
         public TweetConsumer(
             ITweetService tweetService,
             ITweetReportService tweetReportService
-            //, ILogger log
             )
         {
             this.tweetService = tweetService;
             this.tweetReportService = tweetReportService;
-            //this.log = log;
         }
 
         [FunctionName("QueueTrigger")]

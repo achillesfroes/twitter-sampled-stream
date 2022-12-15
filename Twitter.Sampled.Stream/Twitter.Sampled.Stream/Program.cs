@@ -26,9 +26,6 @@ QueueClient queueClient = new QueueClient(queueStorageSettings.ConnectionString,
     MessageEncoding = QueueMessageEncoding.Base64
 });
 
-//QueueClient queueClient = new QueueClient(queueStorageSettings.ConnectionString, queueStorageSettings.QueueName);
-
-
 queueClient.CreateIfNotExists();
 
 using (var reader = new StreamReader(streamAsync))
@@ -39,7 +36,7 @@ using (var reader = new StreamReader(streamAsync))
         tweetString = reader.ReadLine();
         var tweet = Newtonsoft.Json.JsonConvert.DeserializeObject<TweetData>(tweetString);
 
-        if (tweet != null && (tweet.Data.Lang != "ja" || tweet.Data.Lang != "zh"))
+        if (tweet != null)
         {
             Console.WriteLine(tweet.Data.Text);
 

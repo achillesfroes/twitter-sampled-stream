@@ -18,6 +18,7 @@ namespace Twitter.Sampled.Consumer
             builder.Services.AddScoped<ITweetReportService, TweetReportService>();
 
             builder.Services.AddScoped<ITweetRepository, TweetRepository>();
+            builder.Services.AddScoped<ITweetReportRepository, TweetReportRepository>();
 
             builder.Services.AddDbContext<TweetContext>(options => options.UseInMemoryDatabase("TweetDb"));
             //builder.Services.AddLogging();

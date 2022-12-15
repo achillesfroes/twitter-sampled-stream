@@ -2,6 +2,6 @@
 {
     public interface ITweetReportService
     {
-        void TweetSaved(object sender, EventArgs e);
+        Task TweetSaved(object sender, EventArgs e);
     }
 }

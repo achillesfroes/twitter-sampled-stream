@@ -3,18 +3,37 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Twitter.Sampled.Application;
 
 namespace Twitter.Sampled.Consumer
 {
-    public static class TweetConsumer
+    public class TweetConsumer
     {
+        private readonly ITweetService tweetService;
+        private readonly ITweetReportService tweetReportService;
+        //private readonly ILogger log;
+
+        public TweetConsumer(
+            ITweetService tweetService,
+            ITweetReportService tweetReportService
+            //, ILogger log
+            )
+        {
+            this.tweetService = tweetService;
+            this.tweetReportService = tweetReportService;
+            //this.log = log;
+        }
+
         [FunctionName("QueueTrigger")]
-        public static void Run(
-            [QueueTrigger("tweets")] string myQueueItem,
-            ILogger log)
+        public async Task Run(
+            [QueueTrigger("tweets")] string myQueueItem
+            , ILogger log)
         {
             byte[] data = Convert.FromBase64String(myQueueItem);
-            string decodedString = Encoding.UTF8.GetString(data);
+            string decodedTweet = Encoding.UTF8.GetString(data);
+
+            tweetService.TweetSaved += tweetReportService.TweetSaved;
+            await tweetService.KeepTweet(decodedTweet);
         }
     }
 }

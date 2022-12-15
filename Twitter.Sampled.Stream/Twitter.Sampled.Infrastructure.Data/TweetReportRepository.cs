@@ -48,7 +48,7 @@ namespace Twitter.Sampled.Infrastructure.Data
                     }
                     catch (Exception ex)
                     {
-                        throw ex;
+                        
                     }
                 }
         }

@@ -13,8 +13,6 @@ namespace Twitter.Sampled.Application
             await tweetReportRepository.UpdateTagCount();
 
             var topHashTags = await tweetReportRepository.TopHashTags(10);
-
-            Console.WriteLine(String.Join(",", topHashTags.Select(tht => $"{tht.Tag} : {tht.TagCount}")) );
         }
     }
 }

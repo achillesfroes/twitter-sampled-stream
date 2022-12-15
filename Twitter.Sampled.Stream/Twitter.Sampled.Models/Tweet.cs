@@ -1,4 +1,6 @@
-﻿namespace Twitter.Sampled.Models
+﻿using System.Text.RegularExpressions;
+
+namespace Twitter.Sampled.Models
 {
     public class Tweet
     {
@@ -10,7 +12,14 @@
         }
 
         public string Id { get; set; }
-        public string Text { get; set; }
+        private string _text;
+
+        public string Text
+        {
+            get { return Regex.Replace(_text, @"\r\n?|\n", " "); }
+            set { _text = value; }
+        }
+
         public Entities Entities { get; set; }
         public string Lang { get; set; }
         public PromotedMetrics PromotedMetrics { get; set; }

@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Reflection.PortableExecutable;
 using Twitter.Sampled.Infrastructure.Data.DataModels;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Twitter.Sampled.Infrastructure.Data
 {
@@ -26,6 +23,9 @@ namespace Twitter.Sampled.Infrastructure.Data
             modelBuilder.Entity<Tweet>()
             .HasMany(c => c.HashTags)
             .WithOne(e => e.Tweet);
+
+
+            //modelBuilder.UseCollation("SQL_Latin1_General_CP1_CS_AS");
         }
 
     }

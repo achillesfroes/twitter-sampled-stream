@@ -2,6 +2,7 @@
 using Twitter.Sampled.Infrastructure.Data;
 using Twitter.Sampled.Infrastructure.Data.DataModels;
 using Twitter.Sampled.Models;
+using System.Linq;
 
 namespace Twitter.Sampled.Application
 {
@@ -17,30 +18,34 @@ namespace Twitter.Sampled.Application
         public TweetService(ITweetRepository tweetRepository)
         {
             this.tweetRepository = tweetRepository;
-            onlyUtf8Characters = new Regex(@"\b(\p{IsGreek}+(\s)?)+\p{Pd}\s(\p{IsBasicLatin}+(\s)?)+");
         }
 
         public async Task KeepTweet(string tweetString)
         {
             var tweetData = Newtonsoft.Json.JsonConvert.DeserializeObject<TweetData>(tweetString);
 
-            if (tweetData != null && !onlyUtf8Characters.IsMatch(tweetData.Data.Text))
+            if (tweetData != null)
             {
-                var tweetId = Convert.ToUInt64(tweetData.Data.Id);
+                var hashtags = tweetData.Data.Entities.Hashtags.Select(ht => ht.Tag).ToList();
 
-                var tweet = new Infrastructure.Data.DataModels.Tweet
+                if (hashtags.Count != 0)
                 {
-                    Id = tweetId,
-                    Text = tweetData.Data.Text,
-                    Lang = tweetData.Data.Lang,
-                    ImpressionCount = tweetData.Data.PromotedMetrics.ImpressionCount,
-                    RetweetCount = tweetData.Data.PublicMetrics.RetweetCount + tweetData.Data.PromotedMetrics.RetweetCount,
-                    HashTags = tweetData.Data.Entities.Hashtags.Select(t => new HashTag { TweetId = tweetId, Tag = t.Tag }).ToList()
-                };
+                    var tweetId = Convert.ToUInt64(tweetData.Data.Id);
 
-                await tweetRepository.AddTweet(tweet);
+                    var tweet = new Infrastructure.Data.DataModels.Tweet
+                    {
+                        Id = tweetId,
+                        Text = tweetData.Data.Text,
+                        Lang = tweetData.Data.Lang,
+                        ImpressionCount = tweetData.Data.PromotedMetrics.ImpressionCount,
+                        RetweetCount = tweetData.Data.PublicMetrics.RetweetCount + tweetData.Data.PromotedMetrics.RetweetCount,
+                        HashTags = tweetData.Data.Entities.Hashtags.Select(t => new HashTag { TweetId = tweetId, Tag = t.Tag }).ToList()
+                    };
 
-                TweetSaved?.Invoke(this, new EventArgs());
+                    await tweetRepository.AddTweet(tweet);
+
+                    TweetSaved?.Invoke(this, new EventArgs()); 
+                }
             }
 
         }

@@ -34,10 +34,11 @@ using (var reader = new StreamReader(streamAsync))
     while (tweetString != null)
     {
         tweetString = reader.ReadLine();
-        var tweet = Newtonsoft.Json.JsonConvert.DeserializeObject<TweetData>(tweetString);
 
-        if (tweet != null)
+        if (!string.IsNullOrEmpty(tweetString))
         {
+            var tweet = Newtonsoft.Json.JsonConvert.DeserializeObject<TweetData>(tweetString);
+
             Console.WriteLine(tweet.Data.Text);
 
             if (queueClient.Exists())

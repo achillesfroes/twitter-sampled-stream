@@ -14,7 +14,6 @@ namespace Twitter.Sampled.Infrastructure.Data
         {
             try
             {
-
                 await tweetContext.Tweets.AddAsync(tweet);
 
                 await tweetContext.SaveChangesAsync();

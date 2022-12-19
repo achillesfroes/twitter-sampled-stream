@@ -1,4 +1,4 @@
-﻿namespace Twitter.Sampled.Token
+﻿namespace Twitter.Sampled.Infrastructure.Services
 {
     public interface ITokenService
     {

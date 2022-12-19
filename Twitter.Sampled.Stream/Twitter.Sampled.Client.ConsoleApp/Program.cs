@@ -1,6 +1,6 @@
 ﻿using Twitter.Sampled.Client.ConsoleApp.Models;
 
-ReportResponse hashTagsReport = null;
+ReportResponse? hashTagsReport = null;
 
 using (var client = new HttpClient())
 {

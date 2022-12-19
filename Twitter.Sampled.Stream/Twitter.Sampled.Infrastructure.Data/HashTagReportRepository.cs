@@ -21,18 +21,19 @@ namespace Twitter.Sampled.Infrastructure.Data
 
                 foreach (var hashTag in tagCount)
                 {
-                    HashTagReport? hashTagReport = await tweetContext.HashTagsReport.FirstOrDefaultAsync(htr => htr.Tag == hashTag.Tag);
+                    HashTagReport? hashTagReport = await tweetContext.HashTagsReport.FirstOrDefaultAsync(htr => htr.Tag.ToLowerInvariant() == hashTag.Tag.ToLowerInvariant());
 
                     try
                     {
                         if (hashTagReport != null)
                         {
+                            Console.WriteLine("Trying to update");
                             hashTagReport.TagCount = hashTag.TagCount;
-
                             tweetContext.Entry(hashTagReport).State = EntityState.Modified;
                         }
                         else
                         {
+                            Console.WriteLine("Trying to insert");
                             await tweetContext.HashTagsReport.AddAsync(hashTag);
                         }
 
@@ -40,7 +41,7 @@ namespace Twitter.Sampled.Infrastructure.Data
                     }
                     catch (Exception ex)
                     {
-                        
+                        throw ex;
                     }
                 }
         }

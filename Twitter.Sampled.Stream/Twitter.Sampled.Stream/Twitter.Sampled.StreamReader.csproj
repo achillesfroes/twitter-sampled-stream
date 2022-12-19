@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Twitter.Sampled.Models\Twitter.Sampled.Models.csproj" />
-    <ProjectReference Include="..\Twitter.Sampled.Token\Twitter.Sampled.Token.csproj" />
+    <ProjectReference Include="..\Twitter.Sampled.Token\Twitter.Sampled.Infrastructure.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Twitter.Sampled.Token
+namespace Twitter.Sampled.Infrastructure.Services
 {
     public class Token
     {

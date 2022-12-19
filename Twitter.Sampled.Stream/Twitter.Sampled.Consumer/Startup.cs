@@ -16,10 +16,13 @@ namespace Twitter.Sampled.Functions
             builder.Services.AddScoped<ITweetReportService, TweetReportService>();
 
             builder.Services.AddScoped<ITweetRepository, TweetRepository>();
-            builder.Services.AddScoped<IHashTagReportRepository, HashTagReportRepository>();
             builder.Services.AddScoped<ITweetReportRepository, TweetReportRepository>();
+            builder.Services.AddScoped<IHashTagReportRepository, HashTagReportRepository>();
 
-            builder.Services.AddDbContext<TweetContext>(options => options.UseInMemoryDatabase("TweetDb"));
+            builder.Services.AddDbContext<TweetContext>(options =>
+            {
+                options.UseInMemoryDatabase("TweetDb");
+            });
         }
     }
 }

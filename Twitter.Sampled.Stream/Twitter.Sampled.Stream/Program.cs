@@ -1,51 +1,43 @@
-﻿using Azure.Storage.Queues;
-using Microsoft.Extensions.Configuration;
-using System.Text;
-using Twitter.Sampled.Models;
+﻿using Microsoft.Extensions.Configuration;
+using Twitter.Sampled.Infrastructure.Services;
 using Twitter.Sampled.Stream.ConfigModels;
-using Twitter.Sampled.Token;
 
 var builder = new ConfigurationBuilder().AddJsonFile($"appsettings.json", true, true);
 
 var config = builder.Build();
 
-ITokenService tokenService = new TokenService(config);
-
-var token = await tokenService.GetToken();
-
-HttpClient client = new HttpClient();
-client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token.AccessToken}");
-var streamAsync = Task.Run(() => client.GetStreamAsync("https://api.twitter.com/2/tweets/sample/stream?tweet.fields=author_id,entities,lang,promoted_metrics,text")).Result;
-
 QueueStorageSettings queueStorageSettings = new QueueStorageSettings();
-
 config.GetSection("QueueStorageSettings").Bind(queueStorageSettings);
 
-QueueClient queueClient = new QueueClient(queueStorageSettings.ConnectionString, queueStorageSettings.QueueName, new QueueClientOptions
-{
-    MessageEncoding = QueueMessageEncoding.Base64
-});
+ITokenService tokenService = new TokenService(config);
+ITwitterStreamReader twitterStreamReader = new TwitterStreamReader(config);
+IQueueService queueService = new QueueService(queueStorageSettings);
 
-queueClient.CreateIfNotExists();
-
-using (var reader = new StreamReader(streamAsync))
+try
 {
-    var tweetString = reader.ReadLine();
-    while (tweetString != null)
+    var token = await tokenService.GetToken();
+    using (var reader = await twitterStreamReader.GetStreamReader(token))
     {
-        tweetString = reader.ReadLine();
+        var tweetString = await reader.ReadLineAsync();
 
-        if (!string.IsNullOrEmpty(tweetString))
+        while (tweetString != null)
         {
-            var tweet = Newtonsoft.Json.JsonConvert.DeserializeObject<TweetData>(tweetString);
 
-            Console.WriteLine(tweet.Data.Text);
-
-            if (queueClient.Exists())
+            if (!string.IsNullOrEmpty(tweetString))
             {
-                var bytes = Encoding.UTF8.GetBytes(tweetString);
-                queueClient.SendMessage(Convert.ToBase64String(bytes));
+                // TODO: add log entry
+
+                if (queueService.Exists())
+                {
+                    await queueService.SendMessage(tweetString);
+                }
             }
+
+            tweetString = reader.ReadLine();
         }
     }
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
 }

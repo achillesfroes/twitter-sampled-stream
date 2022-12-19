@@ -29,7 +29,7 @@ namespace Twitter.Sampled.Functions
             byte[] data = Convert.FromBase64String(myQueueItem);
             string decodedTweet = Encoding.UTF8.GetString(data);
 
-            tweetService.TweetSaved += tweetReportService.TweetSaved;
+            //tweetService.TweetSaved += tweetReportService.TweetSaved;
             await tweetService.KeepTweet(decodedTweet);
         }
     }

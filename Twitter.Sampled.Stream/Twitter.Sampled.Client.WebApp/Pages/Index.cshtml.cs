@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 using Twitter.Sampled.Client.WebApp.Models;
+using Twitter.Sampled.Models;
 
 namespace Twitter.Sampled.Client.WebApp.Pages
 {
@@ -7,7 +9,7 @@ namespace Twitter.Sampled.Client.WebApp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public ReportResponse HashTagsReport { get; set; }
+        public IEnumerable<HashTagReport> HashTagsReport { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -24,11 +26,11 @@ namespace Twitter.Sampled.Client.WebApp.Pages
                 try
                 {
                     HttpResponseMessage response = await client.SendAsync(request);
-                    var responseString = await response.Content.ReadAsStringAsync();
+                    string? responseString = await response.Content.ReadAsStringAsync();
                     var statusCode = response.StatusCode;
                     if (response.IsSuccessStatusCode)
                     {
-                        HashTagsReport = Newtonsoft.Json.JsonConvert.DeserializeObject<ReportResponse>(responseString);
+                        HashTagsReport = JsonConvert.DeserializeObject<IEnumerable<HashTagReport>>(responseString);
                     }
                     else
                     {

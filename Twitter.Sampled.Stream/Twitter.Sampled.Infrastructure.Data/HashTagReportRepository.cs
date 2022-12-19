@@ -7,48 +7,18 @@ namespace Twitter.Sampled.Infrastructure.Data
     {
         private readonly TweetContext tweetContext;
 
-        public HashTagReportRepository(TweetContext tweetContext) => this.tweetContext = tweetContext;
-
-        public async Task UpdateTagCount()
+        public HashTagReportRepository(TweetContext tweetContext)
         {
-            
-                var tagCount = tweetContext.HashTags.GroupBy(ht => ht.Tag).Select(ght => new HashTagReport
-                {
-                    Tag = ght.Key,
-                    TagCount = ght.Count()
-                }).ToList();
-
-
-                foreach (var hashTag in tagCount)
-                {
-                    HashTagReport? hashTagReport = await tweetContext.HashTagsReport.FirstOrDefaultAsync(htr => htr.Tag.ToLowerInvariant() == hashTag.Tag.ToLowerInvariant());
-
-                    try
-                    {
-                        if (hashTagReport != null)
-                        {
-                            Console.WriteLine("Trying to update");
-                            hashTagReport.TagCount = hashTag.TagCount;
-                            tweetContext.Entry(hashTagReport).State = EntityState.Modified;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Trying to insert");
-                            await tweetContext.HashTagsReport.AddAsync(hashTag);
-                        }
-
-                        await tweetContext.SaveChangesAsync();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
+            this.tweetContext = tweetContext;
         }
 
-        public async Task<IEnumerable<HashTagReport>> TopHashTags(int? number)
+         public IEnumerable<HashTagReport> TopHashTags(int? number)
         {
-            return await tweetContext.HashTagsReport.OrderByDescending(htr => htr.TagCount).Take(number ?? 10).ToListAsync();
+            return tweetContext.HashTags.GroupBy(ht => ht.Tag).Select(ght => new HashTagReport
+            {
+                Tag = ght.Key,
+                TagCount = ght.Count()
+            }).ToHashSet().OrderByDescending(htr => htr.TagCount).Take(number ?? 10);
         }
     }
 }

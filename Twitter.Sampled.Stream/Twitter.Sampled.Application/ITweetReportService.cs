@@ -4,9 +4,9 @@ namespace Twitter.Sampled.Application
 {
     public interface ITweetReportService
     {
-        Task TweetSaved(object sender, EventArgs e);
+        //Task TweetSaved(object sender, EventArgs e);
 
-        Task<IEnumerable<HashTagReport>> GetHashTagReport(int? number = 10);
+        IEnumerable<HashTagReport> GetHashTagReport(int? number);
 
         Task<int> GetTweetCount();
     }

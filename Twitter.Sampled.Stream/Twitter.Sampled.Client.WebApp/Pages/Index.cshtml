@@ -9,7 +9,7 @@
     <ul class="list-group">
         @if (ViewData["message"] == null)
         {
-            @foreach (var hashTagReport in Model.HashTagsReport.Result)
+            @foreach (var hashTagReport in Model.HashTagsReport)
             {
                 <li class="list-group-item d-flex justify-content-between align-items-center">@hashTagReport.Tag
                     <span class="badge bg-primary rounded-pill">@hashTagReport.TagCount</span>

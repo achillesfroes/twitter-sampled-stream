@@ -16,11 +16,6 @@ namespace Twitter.Sampled.Application
             this.tweetReportRepository = tweetReportRepository;
         }
 
-        //public async Task TweetSaved(object sender, EventArgs e)
-        //{
-        //    await hashTagReportRepository.UpdateTagCount();
-        //}
-
         public IEnumerable<HashTagReport> GetHashTagReport(int? number)
         {
             var topHashTags = hashTagReportRepository.TopHashTags(number);

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using Twitter.Sampled.Client.WebApp.Models;
 using Twitter.Sampled.Models;
 
 namespace Twitter.Sampled.Client.WebApp.Pages
@@ -20,9 +19,12 @@ namespace Twitter.Sampled.Client.WebApp.Pages
         {
             using (var client = new HttpClient())
             {
-                HttpRequestMessage request = new HttpRequestMessage();
-                request.RequestUri = new Uri("http://localhost:7069/api/twitter-sampled/tags/top/10");
-                request.Method = HttpMethod.Get;
+                HttpRequestMessage request = new HttpRequestMessage
+                {
+                    RequestUri = new Uri("http://localhost:7069/api/twitter-sampled/tags/top/10"),
+                    Method = HttpMethod.Get
+                };
+
                 try
                 {
                     HttpResponseMessage response = await client.SendAsync(request);

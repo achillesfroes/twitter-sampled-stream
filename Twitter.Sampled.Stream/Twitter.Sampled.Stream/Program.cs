@@ -1,43 +1,55 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Twitter.Sampled.Infrastructure.Services;
 using Twitter.Sampled.Stream.ConfigModels;
 
 var builder = new ConfigurationBuilder().AddJsonFile($"appsettings.json", true, true);
-
 var config = builder.Build();
+
+using ILoggerFactory loggerFactory =
+    LoggerFactory.Create(builder =>
+        builder.AddSimpleConsole(options =>
+        {
+            options.IncludeScopes = true;
+            options.TimestampFormat = "HH:mm:ss ";
+        }));
+
+ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
 
 QueueStorageSettings queueStorageSettings = new QueueStorageSettings();
 config.GetSection("QueueStorageSettings").Bind(queueStorageSettings);
 
-ITokenService tokenService = new TokenService(config);
-ITwitterStreamReader twitterStreamReader = new TwitterStreamReader(config);
-IQueueService queueService = new QueueService(queueStorageSettings);
-
-try
+using (logger.BeginScope("[scope is enabled]"))
 {
-    var token = await tokenService.GetToken();
-    using (var reader = await twitterStreamReader.GetStreamReader(token))
+    ITokenService tokenService = new TokenService(config);
+    ITwitterStreamReader twitterStreamReader = new TwitterStreamReader(config);
+    IQueueService queueService = new QueueService(queueStorageSettings);
+
+    try
     {
-        var tweetString = await reader.ReadLineAsync();
-
-        while (tweetString != null)
+        var token = await tokenService.GetToken();
+        using (var reader = await twitterStreamReader.GetStreamReader(token))
         {
-
-            if (!string.IsNullOrEmpty(tweetString))
+            var tweetString = await reader.ReadLineAsync();
+            logger.LogInformation("[StreamReader:Info] - Starting read");
+            while (tweetString != null)
             {
-                // TODO: add log entry
-
-                if (queueService.Exists())
+                if (!string.IsNullOrEmpty(tweetString))
                 {
-                    await queueService.SendMessage(tweetString);
+                    if (queueService.Exists())
+                    {
+                        logger.LogInformation("[StreamReader:Info] - Sending message");
+                        await queueService.SendMessage(tweetString);
+                        logger.LogInformation("[StreamReader:Info] - Message sent");
+                    }
                 }
-            }
 
-            tweetString = reader.ReadLine();
+                tweetString = reader.ReadLine();
+            }
         }
     }
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
+    catch (Exception ex)
+    {
+        logger.LogError($"[StreamReader:Error] - {ex.Message} StackTrace: {ex.StackTrace}");
+    } 
 }

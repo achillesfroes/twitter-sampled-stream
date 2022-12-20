@@ -61,15 +61,7 @@ static async Task<T> HttpGet<T>(string url)
             var statusCode = response.StatusCode;
             if (response.IsSuccessStatusCode)
             {
-                //if (typeof(T) == typeof(IEnumerable<HashTagReport>))
-                //{
-                    return JsonConvert.DeserializeObject<T>(responseString);
-                //}
-                //else
-                //{
-                //    return JsonConvert.DeserializeObject<T>(responseString);
-                //}
-                
+                return JsonConvert.DeserializeObject<T>(responseString);
             }
         }
         catch (Exception)

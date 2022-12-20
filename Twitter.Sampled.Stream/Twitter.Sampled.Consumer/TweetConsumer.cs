@@ -1,7 +1,6 @@
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Text;
 using System.Threading.Tasks;
 using Twitter.Sampled.Application;
 
@@ -10,15 +9,10 @@ namespace Twitter.Sampled.Functions
     public class TweetConsumer
     {
         private readonly ITweetService tweetService;
-        private readonly ITweetReportService tweetReportService;
 
-        public TweetConsumer(
-            ITweetService tweetService,
-            ITweetReportService tweetReportService
-            )
+        public TweetConsumer(ITweetService tweetService)
         {
             this.tweetService = tweetService;
-            this.tweetReportService = tweetReportService;
         }
 
         [FunctionName("QueueTrigger")]

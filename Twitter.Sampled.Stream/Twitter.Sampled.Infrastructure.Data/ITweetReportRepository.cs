@@ -1,6 +1,4 @@
-﻿using Twitter.Sampled.Infrastructure.Data.DataModels;
-
-namespace Twitter.Sampled.Infrastructure.Data
+﻿namespace Twitter.Sampled.Infrastructure.Data
 {
     public interface ITweetReportRepository
     {

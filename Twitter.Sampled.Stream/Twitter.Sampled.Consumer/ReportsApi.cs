@@ -17,7 +17,7 @@ namespace Twitter.Sampled.Functions
             this.tweetReportService = tweetReportService;
         }
 
-        [FunctionName("topTags")]
+        [FunctionName("TopTags")]
         public async Task<IActionResult> RunTopTags(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "twitter-sampled/tags/top/{number:int?}")] HttpRequest req,
             int? number,
@@ -37,7 +37,7 @@ namespace Twitter.Sampled.Functions
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var tweetCount = tweetReportService.GetTweetCount();
+            var tweetCount = await tweetReportService.GetTweetCount();
 
             return new OkObjectResult(tweetCount);
         }

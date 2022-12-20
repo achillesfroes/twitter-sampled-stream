@@ -4,8 +4,24 @@
     ViewData["Title"] = "Home page";
 }
 
+@section Scripts {
+    <script type="text/javascript">
+        (function(){
+            $.ajax({
+                type: 'GET',
+                //crossDomain: true,
+                dataType: 'json',
+                url: 'http://localhost:7069/api/twitter-sampled/count',
+                success: function (jsondata) {
+                     $("div.alert.alert-primary").html("Tweets " + jsondata);
+                }
+            });
+        })();
+    </script>
+}
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Top 10 hashtags</h1>
     <ul class="list-group">
         @if (ViewData["message"] == null)
         {
@@ -24,6 +40,7 @@
               </div>
             </div>
         }
-
     </ul>
+
+    <div class="alert alert-primary" role="alert"></div>
 </div>

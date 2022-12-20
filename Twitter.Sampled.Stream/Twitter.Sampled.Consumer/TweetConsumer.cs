@@ -26,11 +26,18 @@ namespace Twitter.Sampled.Functions
             [QueueTrigger("tweets")] string myQueueItem
             , ILogger log)
         {
-            byte[] data = Convert.FromBase64String(myQueueItem);
-            string decodedTweet = Encoding.UTF8.GetString(data);
 
-            //tweetService.TweetSaved += tweetReportService.TweetSaved;
-            await tweetService.KeepTweet(decodedTweet);
+            try
+            {
+                log.LogInformation("[TweetConsumer:Info] - Getting message");
+
+                await tweetService.KeepTweet(myQueueItem);
+            }
+            catch (Exception ex)
+            {
+
+                log.LogError($"[TweetConsumer] - {ex.Message}, StackTrace: {ex.StackTrace}");
+            }
         }
     }
 }

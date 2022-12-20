@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Twitter.Sampled.Infrastructure.Data.DataModels;
-using System.Linq;
+﻿using Twitter.Sampled.Infrastructure.Data.DataModels;
 
 namespace Twitter.Sampled.Infrastructure.Data
 {
@@ -20,7 +18,7 @@ namespace Twitter.Sampled.Infrastructure.Data
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ApplicationException($"[TweetRepository] - {ex.Message}", ex);
             }
         }
 

@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitter.Sampled.Client.Cons
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{FF495D9F-BBAF-4CBE-BE78-47025F1DCDB3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit-Testing", "Unit-Testing", "{679F87A1-2A6A-45F4-B225-60164C9CA911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Sampled.Application.Test", "Twitter.Sampled.Application.Test\Twitter.Sampled.Application.Test.csproj", "{DD79F82E-7645-4AC0-9B0D-04CED8850DE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{E626BA63-D462-4647-9913-9FA6C691B0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E626BA63-D462-4647-9913-9FA6C691B0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E626BA63-D462-4647-9913-9FA6C691B0F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD79F82E-7645-4AC0-9B0D-04CED8850DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD79F82E-7645-4AC0-9B0D-04CED8850DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD79F82E-7645-4AC0-9B0D-04CED8850DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD79F82E-7645-4AC0-9B0D-04CED8850DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +78,7 @@ Global
 		{1B4DF8C1-174C-40B3-A8C3-66E9C75F44F0} = {FF495D9F-BBAF-4CBE-BE78-47025F1DCDB3}
 		{0A276CAA-336E-4494-8449-1318F0403719} = {D7C0EBE7-12FB-4083-87F6-994999FD9F76}
 		{E626BA63-D462-4647-9913-9FA6C691B0F5} = {D7C0EBE7-12FB-4083-87F6-994999FD9F76}
+		{DD79F82E-7645-4AC0-9B0D-04CED8850DE4} = {679F87A1-2A6A-45F4-B225-60164C9CA911}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49044F3E-1AE5-48EE-898E-CF87215EB8EA}

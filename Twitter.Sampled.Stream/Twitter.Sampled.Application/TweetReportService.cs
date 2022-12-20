@@ -18,15 +18,14 @@ namespace Twitter.Sampled.Application
 
         public IEnumerable<HashTagReport> GetHashTagReport(int? number)
         {
+            if (number == null)
+            {
+                return new List<HashTagReport>();
+            }
+
             var topHashTags = hashTagReportRepository.TopHashTags(number);
 
-            var hashTagReport = topHashTags.Select(tht => new HashTagReport
-            {
-                Tag = tht.Tag,
-                TagCount = tht.TagCount,
-            }).ToList();
-
-            return hashTagReport;
+            return topHashTags;
         }
 
         public async Task<int> GetTweetCount()

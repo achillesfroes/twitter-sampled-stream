@@ -11,13 +11,19 @@ namespace Twitter.Sampled.Infrastructure.Data
             this.tweetContext = tweetContext;
         }
 
-         public IEnumerable<HashTagReport> TopHashTags(int? number)
+         public IEnumerable<Models.HashTagReport> TopHashTags(int? number)
         {
-            return tweetContext.HashTags.GroupBy(ht => ht.Tag).Select(ght => new HashTagReport
+            var hashTagReports =  tweetContext.HashTags.GroupBy(ht => ht.Tag).Select(ght => new Models.HashTagReport
             {
                 Tag = ght.Key,
                 TagCount = ght.Count()
             }).ToHashSet().OrderByDescending(htr => htr.TagCount).Take(number ?? 10);
+
+            return hashTagReports.Select(tht => new Models.HashTagReport
+            {
+                Tag = tht.Tag,
+                TagCount = tht.TagCount,
+            }).ToList();
         }
     }
 }
